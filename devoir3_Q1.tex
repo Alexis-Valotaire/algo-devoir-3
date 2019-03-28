@@ -10,6 +10,48 @@ Soit n le nombre de pièces distinctes et soit \(T[1 \dots n]\) un tableau donna
 
 \textbf{b)} Donnez un algorithme de programmation dynamique pour calculer tous les \(c_{n,j}\) où \(1 \leq j \leq L\). Votre algorithme ne doit utiliser qu’un seul tableau (à une dimension) de longueur \(L\). \\
 
+\begin{algorithm}[H]
+      \KwData{\( T[1 \cdot\cdot\cdot  n], C[1 \cdot\cdot\cdot  L], entier \: n, entier \: L \)}
+      \KwResult{réel med}
+      	\If{ \(n = 1\)}{
+      		\Return \(  \big( \frac{X[1] + Y[1]}{2} \big) \) \
+      	}
+
+      	\If{ \(n = 2\)}{
+      		\Return \(  \big( \frac{ max(X[1], Y[1]) + min(X[2], Y[2])   }{2} \big) \) \
+      	}
+
+      	\(medX \gets Mediane(X[1 \cdot\cdot\cdot  n]) \) \;
+      	\(medY \gets Mediane(Y[1 \cdot\cdot\cdot  n]) \) \;
+
+      	\If{\(medX = medY\)}{
+      		\Return medX
+      	}
+
+      	\eIf{\(medX < medY\)}
+      	{
+      		\eIf{\( n\bmod  2 = 0\)}
+      		{
+      			\Return TrouverMédiane(X[\( \frac{n}{2} +1\) ...  n], Y[1 ...  \( \frac{n}{2} -1\)], \( \frac{n}{2} +1\))
+      		}
+      		{
+      			\Return TrouverMédiane(X[\( \frac{n}{2}\) ...  n], Y[1 ...  \( \frac{n}{2}\)], \( \frac{n}{2}\))
+      		}
+      	}
+      	{
+      		      		\eIf{\( n\bmod  2 = 0\)}
+      		{
+      			\Return TrouverMédiane(X[1 ...  \( \frac{n}{2} -1\)], Y[\( \frac{n}{2} +1\) ...  n], \( \frac{n}{2} +1\))
+      		}
+      		{
+      			\Return TrouverMédiane(X[\( \frac{n}{2}\) ...  n], Y[1 ...  \( \frac{n}{2}\)], \( \frac{n}{2}\))
+      		}
+      	}
+
+
+      \caption{Trouver \(c_{n,j}\)}
+\end{algorithm}
+
 \textbf{c)} Analysez le temps d’exécution de votre algorithme en fonction de \(n\)
 et de \(L\).
 
