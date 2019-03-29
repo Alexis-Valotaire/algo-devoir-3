@@ -14,6 +14,8 @@ Soit n le nombre de pièces distinctes et soit \(T[1 \dots n]\) un tableau donna
    \end{cases}
 \]
 
+\newpage
+
 \textbf{b)} Donnez un algorithme de programmation dynamique pour calculer tous les \(c_{n,j}\) où \(1 \leq j \leq L\). Votre algorithme ne doit utiliser qu’un seul tableau (à une dimension) de longueur \(L\). \\
 
 \begin{algorithm}[H]
@@ -54,7 +56,41 @@ Soit n le nombre de pièces distinctes et soit \(T[1 \dots n]\) un tableau donna
       \caption{Trouver \(c_{n,j}\)} 
 \end{algorithm}
 
+\newpage
+
 \textbf{c)} Analysez le temps d’exécution de votre algorithme en fonction de \(n\)
-et de \(L\).
+et de \(L\). \\
+\begin{table}[H]
+	\centering
+	\caption{Analyse du temps d'exécution de l'algorithme}
+	\vspace{0.5cm}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Ligne & Temps/Exécution & Nombre d'exécutions & Ordre \\ \hline
+		1     & \(c_1\)            & \(1\)                   & \(O(1)\)       \\ \hline
+		2     & \(c_2\)            & \(1\)                   & \(O(1)\)       \\ \hline
+		3     & \(c_3\)            & \(1\)                   & \(O(1)\)       \\ \hline
+		4     & \(c_4\)            & \([L]+1\)               & \(O(L)\)     \\ \hline
+		5     & \(c_5\)            & \([L]\)                 & \(O(L)\)       \\ \hline
+		6     & \(c_6\)            & \(1\)                   & \(O(1)\)       \\ \hline
+		7     & \(c_7\)            & \([L]+1\)               & \(O(L)\)       \\ \hline
+		8     & \(c_8\)            & \([L]\big([n]+1\big)\)  & \(O(Ln)\)      \\ \hline
+		9     & \(c_9\)            & \([L][n]\)              & \(O(Ln)\)      \\ \hline
+		10    & \(c_10\)           & \([L][n]\)              & \(O(Ln)\)      \\ \hline
+		11    & \(c_11\)           & \([L][n]\)              & \(O(Ln)\)      \\ \hline
+		12    & \(c_{12}\)         & \([L][n]\)              & \(O(Ln)\)      \\ \hline
+		13    & \(c_{13}\)         & \([L][n]\)              & \(O(Ln)\)      \\ \hline
+		14    & \(c_{14}\)         & \([L][n]\)              & \(O(Ln)\)      \\ \hline
+		15    & \(c_{15}\)         & \([L][n]\)              & \(O(Ln)\)      \\ \hline
+		16    & \(c_{16}\)         & \([L][n]\)              & \(O(Ln)\)      \\ \hline
+		17    & \(c_{17}\)         & \([L][n]\)              & \(O(Ln)\)      \\ \hline
+		18    & \(c_{18}\)         & \([L][n]\)              & \(O(Ln)\)      \\ \hline
+		19    & \(c_{19}\)         & \([L][n]\)              & \(O(Ln)\)      \\ \hline
+		20    & \(c_{20}\)         & \([L][n]\)              & \(O(Ln)\)      \\ \hline
+		21    & \(c_{21}\)         & \([L]\)                 & \(O(L)\)       \\ \hline
+	\end{tabular}
+\end{table}
+
+À l'aide du tableau ci-dessus, nous pouvons conclure que le temps d'exécution de notre algorithme est de l'ordre de \(O(Ln)\).
 
 \end{document}
