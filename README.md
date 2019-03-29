@@ -8,5 +8,5 @@
 **TO DO :**  
 - [x]  Question 1  **Alexis**
 - [ ]  Question 2  **Jp**
-- [ ]  Question 3  **Alexis**  
-- [ ]  Question 4  **Jérémy**  
+- [ ]  Question 3  **????**  
+- [ ]  Question 4  **????**  
