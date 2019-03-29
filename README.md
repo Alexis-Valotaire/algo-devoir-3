@@ -9,4 +9,4 @@
 - [x]  Question 1  **Alexis**
 - [ ]  Question 2  **Jp**
 - [ ]  Question 3  **Alexis**  
-- [ ]  Question 4  **????**  
+- [ ]  Question 4  **Jérémy**  
