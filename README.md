@@ -6,7 +6,7 @@
 - Jean-Philippe  
 
 **TO DO :**  
-- [ ]  Question 1  **Alexis**
+- [x]  Question 1  **Alexis**
 - [ ]  Question 2  **Jp**
-- [ ]  Question 3  **????**  
+- [ ]  Question 3  **Alexis**  
 - [ ]  Question 4  **????**  
