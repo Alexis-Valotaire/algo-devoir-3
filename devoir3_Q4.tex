@@ -1,4 +1,5 @@
 \documentclass[devoir3.tex]{subfiles}
+\usepackage{tikz}
 
 \begin{document}
 
@@ -16,7 +17,7 @@ le jeton depuis le bord inferieur du damier vers le bord supérieur, en respecta
 	\centering
 	\includegraphics[width=6cm]{fig2}
 	\caption{Graphe}
-	\label{fig:fig2}   
+	\label{fig:fig2}
 \end{figure}
 
 La figure \ref{fig:fig2} illustre les déplacements valides à partir de deux positions dans un damier de dimension \(4 \times 4\). \\
@@ -26,5 +27,40 @@ Chaque fois que vous vous déplacez du carré \(x = (i, j)\) au carré \(y \in \
 Donner un algorithme efficace de programmation dynamique pour déterminer le montant maximum que vous pouvez empocher. Votre algorithme peut partir de n’importe quel carré du bord inférieur et arriver sur n’importe quel carré du bord supérieur pour maximiser le montant collecté au cours du trajet. \\
 
 Expliquez comment vous pouvez optimiser l’espace mémoire et évaluez le temps d’exécution et l’espace mémoire de votre algorithme. \\
+
+\newpage
+
+Il est possible de facilement constater que ce problème de programmation dynamique présente une structure caractéristique qui le prête bien à ce genre d'algorithme. En effet, la résolution de ce problème se fait en résolvant les sous-problèmes.\\
+
+Pour comprendre comment résoudre les sous-problèmes, il suffit de comprendre que, pour obtenir le meilleur résultat, nous n'avons qu'à partir de la fin du problème (du rang n jusqu'au rang 1) et de récursivement descendre en trouvant la case précédente qui nous génère le plus grand montant. Ensuite, nous n'avons qu'à refaire cela pour chaque case final et ainsi obtenir le chemin le plus payant.\\
+
+Voici un démonstatration rapide de cet algorithme en utilisant une gille 6x6.\\
+
+\begin{tikzpicture}[scale=1.50]
+\foreach \x in {1, 2, ..., 6}
+\foreach \y in {1, 2, ..., 6}
+{
+	\draw (\x,\y) +(-.5, -.5) rectangle ++(.5, .5);
+}
+\foreach \x in {1, 2, ..., 6}
+{
+	\node at (\x, 0) {\x};
+	\node at (0, \x) {\x};
+}
+\draw (3, 4) node{\small A};
+\draw (2, 3) node{\small B};
+\draw (3, 3) node{\small C};
+\draw (4, 3) node{\small D};
+\end{tikzpicture}
+
+Pour choisir le bon chemin à partir de A, il suffit de choisir la valeur la plus élevée de la fonction \( P \) entre B, C ou D. On construit donc la valeur de \( P \) pour le point A à partir des valeurs inférieure.
+
+On obtient donc l'équations suivante:
+
+\[ P(A) = max(P(B), P(C), P(D)) + C(A)) \]
+
+où \( C \) est une fonction qui calcule le coût de l'emplacement.\\
+
+Il est possible aussi de se rendre compte que si le jeton est sur les côtés, la valeur du du côté gauche du jeton (s'il est du côté gauche) doit être de -infini pour que celui-ci ne choisisse pas ce chemin. Il est donc possible de facilement définir un algorithme en pseudo-code pour réaliser ceci.\\
 
 \end{document}
