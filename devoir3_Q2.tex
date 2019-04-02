@@ -1,10 +1,8 @@
 \documentclass[devoir3.tex]{subfiles}
 
-\usepackage{tikz,amsmath}
-
 \begin{document}
 
-\newcommand\hlight[1]{\tikz[overlay, remember picture,baseline=-\the\dimexpr\fontdimen22\textfont2\relax]\node[rectangle,fill=blue!50,rounded corners,fill opacity = 0.2,draw,thick,text opacity =1] {$#1$};} 
+\newcommand\hlight[1]{\tikz[overlay, remember picture,baseline=-\the\dimexpr\fontdimen22\textfont2\relax]\node[rectangle,fill=blue!50,rounded corners,fill opacity = 0.2,draw,thick,text opacity =1] {$#1$};}
 
 \section*{Question 2}
 Donnez toutes les étapes de l’algorithme de Floyd pour calculer le plus court chemin entre toutes les paires de noeuds du graphe de la figure \ref{fig:fig1}. Donnez la matrice obtenue à chaque itération.
@@ -13,7 +11,7 @@ Donnez toutes les étapes de l’algorithme de Floyd pour calculer le plus court
 	\centering
 	\includegraphics[width=8cm]{fig1}
 	\caption{Graphe}
-	\label{fig:fig1}   
+	\label{fig:fig1}
 \end{figure}
 
 La matrice D\textsubscript{0} qui suit est la matrice d'adjacence du graphe précédent:
@@ -67,7 +65,7 @@ Puis, on répète jusqu'à ce qu'on est parcouru les 7 lignes/colonnes, ce qui d
 	D\textsubscript{3} =
 	\begin{bmatrix}
 		0 		& 1 	  	& 3 		& 4 	  	  & 5		& \hlight{9} 	& \infty \\
-		1 		& 0 		& 2		& 5		  & 4		& \hlight{8} 	& \infty \\	
+		1 		& 0 		& 2		& 5		  & 4		& \hlight{8} 	& \infty \\
 		3	 	& 2 		& 0 		& 7	 	  & 5 	  	& 6 		& \infty \\
 		4 		& 5		& 7	  	& 0 	  	  & 3	  	& \hlight{13}	& 4 \\
 		5  		& 4 	 	& 5 		& 3 	  	  & 0 	  	& 8 	 	& 7 \\
@@ -80,7 +78,7 @@ Puis, on répète jusqu'à ce qu'on est parcouru les 7 lignes/colonnes, ce qui d
 	D\textsubscript{4} =
 	\begin{bmatrix}
 		0 		& 1 	  	& 3 		& 4 	  	  & 5		& 9	 	& \hlight{8} \\
-		1 		& 0 		& 2		& 5		  & 4		& 8	 	& \hlight{9}  \\	
+		1 		& 0 		& 2		& 5		  & 4		& 8	 	& \hlight{9}  \\
 		3	 	& 2 		& 0 		& 7	 	  & 5 	  	& 6 		& \hlight{11} \\
 		4 		& 5		& 7	  	& 0 	  	  & 3	  	& 13		& 4 \\
 		5  		& 4 	 	& 5 		& 3 	  	  & 0 	  	& 8 	 	& 7  \\
@@ -93,7 +91,7 @@ Puis, on répète jusqu'à ce qu'on est parcouru les 7 lignes/colonnes, ce qui d
 	D\textsubscript{5} =
 	\begin{bmatrix}
 		0 		& 1 	  	& 3 		& 4 	  	  & 5		& 9	 	& 8 \\
-		1 		& 0 		& 2		& 5		  & 4		& 8	 	& 9  \\	
+		1 		& 0 		& 2		& 5		  & 4		& 8	 	& 9  \\
 		3	 	& 2 		& 0 		& 7	 	  & 5 	  	& 6 		& 11 \\
 		4 		& 5		& 7	  	& 0 	  	  & 3	  	& \hlight{11}	& 4 \\
 		5  		& 4 	 	& 5 		& 3 	  	  & 0 	  	& 8 	 	& 7  \\
@@ -106,7 +104,7 @@ Puis, on répète jusqu'à ce qu'on est parcouru les 7 lignes/colonnes, ce qui d
 	D\textsubscript{6} =
 	\begin{bmatrix}
 		0 		& 1 	  	& 3 		& 4 	  	  & 5		& 9	 	& 8 \\
-		1 		& 0 		& 2		& 5		  & 4		& 8	 	& 9  \\	
+		1 		& 0 		& 2		& 5		  & 4		& 8	 	& 9  \\
 		3	 	& 2 		& 0 		& 7	 	  & 5 	  	& 6 		& \hlight{9} \\
 		4 		& 5		& 7	  	& 0 	  	  & 3	  	& 11		& 4 \\
 		5  		& 4 	 	& 5 		& 3 	  	  & 0 	  	& 8 	 	& 7  \\
@@ -119,7 +117,7 @@ Puis, on répète jusqu'à ce qu'on est parcouru les 7 lignes/colonnes, ce qui d
 	D\textsubscript{7} =
 	\begin{bmatrix}
 		0 		& 1 	  	& 3 		& 4 	  	  & 5		& 9	 	& 8 \\
-		1 		& 0 		& 2		& 5		  & 4		& 8	 	& 9  \\	
+		1 		& 0 		& 2		& 5		  & 4		& 8	 	& 9  \\
 		3	 	& 2 		& 0 		& 7	 	  & 5 	  	& 6 		& 9   \\
 		4 		& 5		& 7	  	& 0 	  	  & 3	  	& \hlight{7}	& 4 \\
 		5  		& 4 	 	& 5 		& 3 	  	  & 0 	  	& 8 	 	& 7  \\
@@ -133,7 +131,7 @@ La matrice résultante de l'algorithme de Floyd est donc:
 	D\textsubscript{resultante} =
 	\begin{bmatrix}
 		0 		& 1 	  	& 3 		& 4 	  	  & 5		& 9	 	& 8 \\
-		1 		& 0 		& 2		& 5		  & 4		& 8	 	& 9  \\	
+		1 		& 0 		& 2		& 5		  & 4		& 8	 	& 9  \\
 		3	 	& 2 		& 0 		& 7	 	  & 5 	  	& 6 		& 9   \\
 		4 		& 5		& 7	  	& 0 	  	  & 3	  	& 7		& 4 \\
 		5  		& 4 	 	& 5 		& 3 	  	  & 0 	  	& 8 	 	& 7  \\

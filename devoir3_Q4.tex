@@ -1,5 +1,4 @@
 \documentclass[devoir3.tex]{subfiles}
-\usepackage{tikz}
 
 \begin{document}
 
@@ -62,5 +61,34 @@ On obtient donc l'équations suivante:
 où \( C \) est une fonction qui calcule le coût de l'emplacement.\\
 
 Il est possible aussi de se rendre compte que si le jeton est sur les côtés, la valeur du du côté gauche du jeton (s'il est du côté gauche) doit être de -infini pour que celui-ci ne choisisse pas ce chemin. Il est donc possible de facilement définir un algorithme en pseudo-code pour réaliser ceci.\\
+
+\begin{algorithm}[H]
+	\KwData{\( P[1 \dots n,1 \dots n] \: entier \: i, entier \: j \)}
+    \KwResult{\(valeur \: de \: i, \: j\)}
+
+    \If{ \( j < 1 \: ou \: j > n \) }{
+    	\Return \( -infini \)
+    }
+
+		\ElseIf{ \( i = 1 \) }{
+    	\Return \( C(i, \: j) \)
+    }
+
+		\Else{
+    	\Return \( max(F(i \: - \: 1, \: j \: - \: 1), \: F(i \: - \: 1, \: j), \: F(i \: - \: 1, \: j \: + \: 1)) \: + \: C(i, \: j) \)
+    }
+
+      \caption{Fonction F: Trouver le chemin le plus payant}
+\end{algorithm}
+
+Il est possible d'analyser cet algorithme:\\
+
+Pour la complexité temporelle, on voit extrêmement facilement que pour chaque boucle récursive, on descend d'un rang. Puisque l'on descend d'un rang à chaque fois, et qu'il y a \( n \) rang, et que dans chaque boucle, choisir la prochaine étape ce fait en \( O(3) \) (d'ou \( O(1) \)).\\
+
+Il est possible de conclure que la notation grand O de cet algorithme est de \( O(n \: * \: 1) \: = \: O(n) \).\\
+
+Pour la complexité spatiale, on voit également facilement que cet algorithme utilise seulement un tableau de \(n\) par \(n\). On voit donc que la complexité spatiale est de \(O(n^2)\).\\
+
+Il serait possible d'optimiser cet algorithme en conservant la valeur de C entre chaque exécution. L'avantage de cela serait de ne pas recalculer pour chaque fois que l'on veut la valeur maximale d'une nouvelle case. On pourrait également remplacer le tableau en une simple liste, chaînée ou non, si l'on veut que contenir le chemin et sa valeur jusqu'à maintenant. Cela diminue la complexité spatiale du problème.
 
 \end{document}
