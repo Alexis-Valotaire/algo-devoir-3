@@ -3,15 +3,94 @@
 \begin{document}
 
 \section*{Question 1}
-Nous avons vu en classe un algorithme vorace pour résoudre le problème du retour de la monnaie en un nombre minimum de pièces. Nous avons observé que cet algorithme fonctionne correctement avec de pièces de monnaie canadiennes mais celui-ci ne trouve pas toujours la bonne réponse si, par exemple, de pièces de 12 cents sont ajoutées (e.g. il y a une erreur pour retourner 15 cents). Le problème général du retour de la monnaie peut être résolu exactement en utilisant la programmation dynamique.
+Nous avons vu en classe un algorithme vorace pour résoudre le problème du retour de la monnaie en un nombre minimum de pièces. Nous avons observé que cet algorithme fonctionne correctement avec de pièces de monnaie canadiennes mais celui-ci ne trouve pas toujours la bonne réponse si, par exemple, des pièces de 12 cents sont ajoutées (e.g. il y a une erreur pour retourner 15 cents). Le problème général du retour de la monnaie peut être résolu exactement en utilisant la programmation dynamique. \\[0.2cm]
 Soit n le nombre de pièces distinctes et soit \(T[1 \dots n]\) un tableau donnant la valeur de ces pièces (il n’y a aucun intérêt à trier ce tableau). Supposons une quantité illimitée de chaque type de pièces. Soit \(L\), une limite sur le montant à obtenir. \\
 
-\textbf{a)} Pour \(1 \leq i \leq n\) et \(1 \leq j \leq L\), soit \(c_{i,j}\) le nombre minimum
-de pièces pour obtenir le montant \(j\) si on se limite aux pièces de type \(T[1], T[2], \dots , T[i]\). Si ce montant ne peut être obtenu alors \(c_{i,j} = +\infty \). Donnez une équation de récurrence pour \(c_{i,j}\) incluant les conditions initiales. \\
+\textbf{a)} Pour \(1 \leq i \leq n\) et \(1 \leq j \leq L\), soit \(c_{i,j}\) le nombre minimum de pièces pour obtenir le montant \(j\) si on se limite aux pièces de type \(T[1], T[2], \dots , T[i]\). Si ce montant ne peut être obtenu alors \(c_{i,j} = +\infty \). Donnez une équation de récurrence pour \(c_{i,j}\) incluant les conditions initiales. \\
+
+\[c_{i,j} \begin{cases}
+      1+c_{i,j}(L-T[i]) & \text{si } L \geq 0 \\
+      +\infty & \text{ailleurs }
+   \end{cases}
+\]
+
+\newpage
 
 \textbf{b)} Donnez un algorithme de programmation dynamique pour calculer tous les \(c_{n,j}\) où \(1 \leq j \leq L\). Votre algorithme ne doit utiliser qu’un seul tableau (à une dimension) de longueur \(L\). \\
 
+\begin{algorithm}[H]
+	\KwData{\( T[1 \dots n], entier \: n, entier \: L \)}
+    \KwResult{\(Entier \: c[L]\)}
+
+    \If{ \(L = 0\)}{
+    	\Return \(  (INT\_ MAX) \)
+    }
+
+    \For{\( j \gets 1 $ \KwTo $ L \)}
+    {
+    	\( c[j] \gets INT\_ MAX \)
+    }
+         
+    \For{\( j \gets 1 $ \KwTo $ L \)}
+    {
+    	\For{\( i \gets 1 $ \KwTo $ n \)}
+    	{
+    		\If{\(T[i] \leq j\)}
+    		{
+				\If{\((j-T[i]) = 0\)}
+				{
+					\(temp \gets 0\)
+				}
+				\Else
+				{
+					\(temp \gets c[j-T[i]]\)
+				}
+				\If{\(temp \neq INT\_ MAX \And (temp + 1) < c[j] \)}
+				{
+					\(c[j] \gets temp + 1\) 
+				}
+    		}
+    	}
+    }   
+
+      \caption{Trouver \(c_{n,j}\)} 
+\end{algorithm}
+
+\newpage
+
 \textbf{c)} Analysez le temps d’exécution de votre algorithme en fonction de \(n\)
-et de \(L\).
+et de \(L\). \\
+\begin{table}[H]
+	\centering
+	\caption{Analyse du temps d'exécution de l'algorithme}
+	\vspace{0.5cm}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Ligne & Temps/Exécution & Nombre d'exécutions & Ordre \\ \hline
+		1     & \(c_1\)            & \(1\)                   & \(O(1)\)       \\ \hline
+		2     & \(c_2\)            & \(1\)                   & \(O(1)\)       \\ \hline
+		3     & \(c_3\)            & \(1\)                   & \(O(1)\)       \\ \hline
+		4     & \(c_4\)            & \([L]+1\)               & \(O(L)\)     \\ \hline
+		5     & \(c_5\)            & \([L]\)                 & \(O(L)\)       \\ \hline
+		6     & \(c_6\)            & \(1\)                   & \(O(1)\)       \\ \hline
+		7     & \(c_7\)            & \([L]+1\)               & \(O(L)\)       \\ \hline
+		8     & \(c_8\)            & \([L]\big([n]+1\big)\)  & \(O(Ln)\)      \\ \hline
+		9     & \(c_9\)            & \([L][n]\)              & \(O(Ln)\)      \\ \hline
+		10    & \(c_10\)           & \([L][n]\)              & \(O(Ln)\)      \\ \hline
+		11    & \(c_11\)           & \([L][n]\)              & \(O(Ln)\)      \\ \hline
+		12    & \(c_{12}\)         & \([L][n]\)              & \(O(Ln)\)      \\ \hline
+		13    & \(c_{13}\)         & \([L][n]\)              & \(O(Ln)\)      \\ \hline
+		14    & \(c_{14}\)         & \([L][n]\)              & \(O(Ln)\)      \\ \hline
+		15    & \(c_{15}\)         & \([L][n]\)              & \(O(Ln)\)      \\ \hline
+		16    & \(c_{16}\)         & \([L][n]\)              & \(O(Ln)\)      \\ \hline
+		17    & \(c_{17}\)         & \([L][n]\)              & \(O(Ln)\)      \\ \hline
+		18    & \(c_{18}\)         & \([L][n]\)              & \(O(Ln)\)      \\ \hline
+		19    & \(c_{19}\)         & \([L][n]\)              & \(O(Ln)\)      \\ \hline
+		20    & \(c_{20}\)         & \([L][n]\)              & \(O(Ln)\)      \\ \hline
+		21    & \(c_{21}\)         & \([L]\)                 & \(O(L)\)       \\ \hline
+	\end{tabular}
+\end{table}
+
+À l'aide du tableau ci-dessus, nous pouvons conclure que le temps d'exécution de notre algorithme est de l'ordre de \(O(Ln)\).
 
 \end{document}
