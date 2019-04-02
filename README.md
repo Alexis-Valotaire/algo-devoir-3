@@ -7,6 +7,6 @@
 
 **TO DO :**  
 - [x]  Question 1  **Alexis**
-- [ ]  Question 2  **Jp**
-- [ ]  Question 3  **????**  
-- [ ]  Question 4  **????**  
+- [x]  Question 2  **Jp**
+- [x]  Question 3  **Alexis**  
+- [x]  Question 4  **Jeremy**  
